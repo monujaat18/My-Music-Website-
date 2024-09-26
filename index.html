@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html style="background-color: rgb(12, 12, 12);" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MUSIC MANIA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <img class="logo invert" src="/allsvg/music-artist.svg" alt="">
+        <div class="home">
+            <img class="homepng invert" src="/allsvg/newhome.svg" onclick="location.reload()" alt="">
+            <div class="searchbar">
+                <img class="searchpng invert" src="/allsvg/search.svg" alt="">
+                <input class="inputtext" type="search" placeholder="What do you want to play">
+                <img class="inputpng invert" src="/allsvg/inputimg.svg" alt="">
+            </div>
+        </div>
+        <div class="twobtn">
+            <button class="signup" onclick="window.location.href='https://www.spotify.com/signup/?forward_url=https://www.spotify.com/&utm_source=spotify&utm_medium=web&utm_campaign=organic';">Sign Up</button>
+            <button class="login"  onclick="window.location.href='https://accounts.spotify.com/en/login';">Log In</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="left-box">
+            <div  class="song-cont">
+        </div>
+            <img class="invert hamburger" src="/allsvg/menu-01-stroke-rounded.svg" alt="">
+            <div class="musiclistner">
+                <div class="info"></div>
+                <div class="buttons">
+                    <img id="back" class="invert" src="/allsvg/backbtn.svg" alt="">
+                    <img id="play" class="invert" src="/allsvg/play button.svg" alt="">
+                    <img id="next" class="invert" src="/allsvg/nextbtn.svg" alt="">
+                </div>
+                <div class="duration"></div>
+                <div class="seekbar">
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="volumebtn">
+                <img class="invert volumeplus" src="/allsvg/volume-high-stroke-rounded.svg" alt="">
+            </div>
+        </div>
+        <div class="right-box">
+            <div class="library">
+                <img class="invert cross" src="/allsvg/cancel-circle-stroke-rounded.svg" alt="">
+                <div class="libcont">
+                    <img class="libimg invert" src="/allsvg/library.svg" alt="">
+                    <div class="libtext">Your Library</div>
+                    <img class="plusimg invert" src="/allsvg/plus.svg" alt="">
+                </div>
+                <div class="song">
+                    <ul>
+
+                    </ul>
+                </div>
+                <div class="cookies">
+                    <div class="cookieone">Legal Safety&Privacy Center privacy Policy</div>
+                    <div class="cookiesec">Cookies About Ads Accessibility</div>
+                    <div class="cookiethird">Cookies</div>
+                    <button class="cookielan">
+                        <img class="invert" src="/allsvg/world.svg" alt="">
+                        <span>English</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

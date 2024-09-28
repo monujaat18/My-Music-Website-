@@ -15,7 +15,7 @@ const totalSeconds = 90; // Change this value as needed
 const formattedTime = secondsToMinutesAndSeconds(totalSeconds);
 
 async function getsongs() {
-    let a = await fetch("http://127.0.0.1:3000/songs/");
+    let a = await fetch("https://github.com/monujaat18/My-Music-Website-/tree/main/songs");
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;

@@ -1,4 +1,5 @@
 let Songs;
+
 function secondsToMinutesAndSeconds(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -10,49 +11,41 @@ function secondsToMinutesAndSeconds(seconds) {
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-// Example usage:
-const totalSeconds = 90; // Change this value as needed
-const formattedTime = secondsToMinutesAndSeconds(totalSeconds);
-
+// Fetch songs from the JSON file
 async function getsongs() {
-    let a = await fetch("http://127.0.0.1:3000/songs/");
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    let as = div.getElementsByTagName("a");
-    let songs = [];
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split("/songs/")[1]);
-        }
-    }
-    return songs;
+    const response = await fetch("https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs.json");
+    const data = await response.json();
+    return data.songs;
 }
+
 const currentsong = new Audio();
+
 const playMusic = (track) => {
-    currentsong.src = "/songs/" + track;
+    currentsong.src = track.url; // Use the URL from the JSON
     currentsong.play();
-    play.src = "/allsvg/pause.svg";
-    document.querySelector(".info").innerHTML = track;
+    play.src = "/allsvg/pause.svg"; // Ensure this path is correct
+    document.querySelector(".info").innerHTML = track.name; // Use the song name from the JSON
     document.querySelector(".duration").innerHTML = "00:00";
 }
+
 async function main() {
     Songs = await getsongs();
     let songlist = document.querySelector(".song").getElementsByTagName("ul")[0];
-    for (const songall of Songs) {
-        songlist.innerHTML = songlist.innerHTML + `
+    for (const song of Songs) {
+        songlist.innerHTML += `
         <li>
-                                <img class="invert radio" src="/allsvg/songmusic.svg" alt="">
-                               <div>${songall.replaceAll("%20", " ")}</div>
-                                <img class="invert playSong" src="/allsvg/play button.svg" alt="">
-                            </li>`;
+            <img class="invert radio" src="/allsvg/songmusic.svg" alt="">
+            <div>${song.name}</div>
+            <img class="invert playSong" src="/allsvg/play button.svg" alt="">
+        </li>`;
     }
-    Array.from(document.querySelector(".song").getElementsByTagName("li")).forEach(e => {
+    
+    Array.from(document.querySelector(".song").getElementsByTagName("li")).forEach((e, index) => {
         e.addEventListener("click", () => {
-            playMusic(e.getElementsByTagName("div")[0].innerHTML.trim());
-        })
-    })
+            playMusic(Songs[index]); // Pass the entire song object
+        });
+    });
+
     play.addEventListener("click", () => {
         if (currentsong.paused) {
             currentsong.play();
@@ -61,58 +54,65 @@ async function main() {
             currentsong.pause();
             play.src = "/allsvg/play button.svg";
         }
-    })
+    });
+
     currentsong.addEventListener("timeupdate", () => {
         document.querySelector(".duration").innerHTML = `${secondsToMinutesAndSeconds(currentsong.currentTime).split(".")[0]}/
         ${secondsToMinutesAndSeconds(currentsong.duration).split(".")[0]}`;
         document.querySelector(".circle").style.left = ((currentsong.currentTime / currentsong.duration) * 100 + "%");
-    })
+    });
 
-    document.querySelector(".seekbar"), addEventListener("dblclick", e => {
+    document.querySelector(".seekbar").addEventListener("dblclick", e => {
         let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
         document.querySelector(".circle").style.left = (percent + "%");
         currentsong.currentTime = ((currentsong.duration) * percent) / 100;
-    })
+    });
+
     document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector(".right-box").style.right = "0%";
-    })
+    });
+
     document.querySelector(".cross").addEventListener("click", () => {
         document.querySelector(".right-box").style.right = "-100%";
-    })
-    next.addEventListener("click", () => {
-        let index = Songs.indexOf(currentsong.src.split("/").slice(-1)[0])
-        console.log(index);
-        if ((index + 1) > length) {
-            playMusic(Songs[index + 1].replaceAll("%20", " "));
+    });
+
+    document.querySelector("#next").addEventListener("click", () => {
+        let index = Songs.findIndex(song => song.url === currentsong.src);
+        if (index + 1 < Songs.length) {
+            playMusic(Songs[index + 1]);
         }
-    })
-    back.addEventListener("click", () => {
-        let index = Songs.indexOf(currentsong.src.split("/").slice(-1)[0])
-        console.log(index);
-        if ((index - 1) > 0) {
-            playMusic(Songs[index - 1].replaceAll("%20", " "));
+    });
+
+    document.querySelector("#back").addEventListener("click", () => {
+        let index = Songs.findIndex(song => song.url === currentsong.src);
+        if (index - 1 >= 0) {
+            playMusic(Songs[index - 1]);
         }
-    })
+    });
 }
+
 main();
+
 function album(songname, img, artistname, songurl) {
     let html = `
    <div class="song-cont">
-  <div class="songbox">
-                <div class="card">
-                    <img src="${img}" alt="">
-                    <div class="songName">${songname}</div>
-                    <div class="artistName">${artistname}</div>
-              
-                </div>      </div>
-            </div>`
+      <div class="songbox">
+          <div class="card">
+              <img src="${img}" alt="">
+              <div class="songName">${songname}</div>
+              <div class="artistName">${artistname}</div>
+          </div>
+      </div>
+   </div>`;
     let element = document.createElement("div");
     element.innerHTML = html;
     element.addEventListener("click", () => {
-        playMusic(songurl.replaceAll("%20", " "));
+        playMusic({ name: songname, url: songurl }); // Pass an object with name and URL
     });
     document.querySelector(".song-cont").appendChild(element);
 }
+
+// Example usage of album function with JSON data
 album("52 Bars", "/allimg/karan1.jpeg", "Karan Aujla", "52%20Bars-KARAN%20AUJLA.mp3");
 album("Players", "allimg/karan3.jpeg", "Karan Aujla","Karan%20Aujla%20-%20Players.mp3");
 album("Bachke Bachke", "allimg/karan2.jpeg", "Karan Aujla","Bachke%20Bachke-Karan%20Aujla.mp3");

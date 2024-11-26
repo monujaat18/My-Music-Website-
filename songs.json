@@ -1,0 +1,48 @@
+{
+    "songs": [
+        {
+            "name": "52 Bars",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/52%20Bars-KARAN%20AUJLA.mp3"
+        },
+        {
+            "name": "Players",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/Karan%20Aujla%20-%20Players.mp3"
+        },
+        {
+            "name": "Bachke Bachke",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/Bachke%20Bachke-Karan%20Aujla.mp3"
+        },
+        {
+            "name": "Chitta Kurta",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/Chitta%20Kurta%20Karan%20Aujla.mp3"
+        },
+        {
+            "name": "Game Over",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/Game%20Over%20Karan%20Aujla.mp3"
+        },
+        {
+            "name": "Goin Off",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/Goin%20Off%20Karan%20Aujla.mp3"
+        },
+        {
+            "name": "100 Million",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/100%20Million%20-KARAN%20AUJLA.mp3"
+        },
+        {
+            "name": "It Ain't Legal",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/KARAN-%20IT%20AIN'T%20LEGAL.mp3"
+        },
+        {
+            "name": "Take It Easy",
+            "url": "https://raw.githubusercontent.com/monujaat18/My-Music-Website-/main/songs/Take%20It%20Easy%20Karan%20Aujla.mp3"
+        },
+       {
+            "name": "Sheikh",
+            "url": "https://github.com/monujaat18/My-Music-Website-/blob/main/songs/Sheikh%20Karan%20Aujla.mp3"
+        },
+      {
+            "name": "On Top",
+            "url": "https://github.com/monujaat18/My-Music-Website-/blob/main/songs/On%20Top%20Karan%20Aujla.mp3"
+        }
+    ]
+}
